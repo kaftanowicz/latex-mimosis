@@ -10,8 +10,10 @@
            cleardoublepage=empty,
            numbers=noenddot,
            titlepage,
+           toc=listof,
            toc=bibliography,
-           toc=index,]{scrbook}
+           toc=index,
+           captions=tableheading,]{scrbook}
 
 \RequirePackage{ifpdf}
 \RequirePackage{ifxetex}

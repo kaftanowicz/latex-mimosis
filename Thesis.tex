@@ -36,6 +36,7 @@
   linkcolor  = RoyalBlue,
   urlcolor   = RoyalBlue,
   ]{hyperref}
+\usepackage[capitalize,noabbrev]{cleveref}
 
 \usepackage{bookmark}
 
@@ -72,25 +73,17 @@
 \else
   \usepackage[lf]{ebgaramond}
   \usepackage[oldstyle,scale=0.7]{sourcecodepro}
-  \singlespacing
 \fi
 
 \renewcommand{\th}{\textsuperscript{\textup{th}}\xspace}
 
-\newacronym[description={Principal component analysis}]{PCA}{PCA}{principal component analysis}
-\newacronym                                            {SNF}{SNF}{Smith normal form}
-\newacronym[description={Topological data analysis}]   {TDA}{TDA}{topological data analysis}
+% \newacronym{<label>}{<abbrv>}{<full>}
+\newacronym[description={Mean absolute error}]{mae}{MAE}{mean absolute error}
 
 \newglossaryentry{LaTeX}{%
   name        = {\LaTeX},
   description = {A document preparation system},
   sort        = {LaTeX},
-}
-
-\newglossaryentry{Real numbers}{%
-  name        = {$\real$},
-  description = {The set of real numbers},
-  sort        = {Real numbers},
 }
 
 \makeindex
@@ -131,5 +124,11 @@
 
   \printindex
   \printbibliography
+  {
+  	\listoffigures 
+  	\let\cleardoublepage\clearpage 
+  	\listoftables
+  }
+  \include{Sources/Appendices}
 
 \end{document}
