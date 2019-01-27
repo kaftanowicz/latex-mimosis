@@ -53,6 +53,10 @@ it easier to select proper fonts.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}
   \centering
+  \caption{%
+  	A list of the most relevant packages required~(and automatically imported) by this template.
+  }
+  \label{tab:Packages}
   \begin{tabular}{ll}
     \toprule
     \textbf{Package}      & \textbf{Purpose}\\
@@ -72,15 +76,11 @@ it easier to select proper fonts.
       \texttt{subcaption} & Proper sub-captions for figures\\
     \bottomrule
   \end{tabular}
-  \caption{%
-    A list of the most relevant packages required~(and automatically imported) by this template.
-  }
-  \label{tab:Packages}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The template automatically imports numerous convenience packages that
-aid in your typesetting process. \autoref{tab:Packages} lists the
+aid in your typesetting process. \cref{tab:Packages} lists the
 most important ones. Let's briefly discuss some examples below. Please
 refer to the source code for more demonstrations.
 
@@ -152,3 +152,82 @@ can just use
 %
 at the end of the document preamble---you don't have to modify the class
 file for this. Please consult the source code for more information.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{WUT additionals}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This section describes several typical needs in case of thesis writing at Warsaw University of Technology\footnote{\url{https://www.pw.edu.pl/}}. Repository with appropriate modification can be found on GitHub~\autocite{Rzepinski2019Fork}.
+
+\subsection{Tables and figures environment}
+
+Use \texttt{minipage} environment to place multiple unrelated figures or tables side by side (\cref{fig:multiple_unrelated_figures-first,fig:multiple_unrelated_figures-second}). In case of dependent elements use \texttt{subfigures} or \texttt{subtables} environments (\cref{fig:multiple_dependent-figures}).
+
+\begin{figure}
+	\begin{minipage}[t]{.4\textwidth}  
+		\centering
+		\includegraphics[width=\textwidth]{logo.png}
+		\caption{First figure.}
+		\label{fig:multiple_unrelated_figures-first}
+	\end{minipage}%  
+	\hfill
+	\begin{minipage}[t]{0.4\textwidth}  
+		\centering
+		\includegraphics[width=\textwidth]{logo.png}
+		\caption{The second, unrelated figure.}
+		\label{fig:multiple_unrelated_figures-second}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}
+	\begin{subfigure}[b]{.48\textwidth}
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+		\caption{Before}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{.48\textwidth}
+		Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		\caption{After}
+	\end{subfigure}
+	\caption{Example of \texttt{subfigure} environment.}
+	\label{fig:multiple_dependent-figures}
+\end{figure}
+
+To properly align numbers in tables use \texttt{siunitx} package. Example in~\cref{tab:multicolumn-siunitx}.
+
+\begin{table}
+	\centering
+	\caption{You can also benefit from abbreviations handling -- e.g. \acrfull{mae}.}
+	\label{tab:multicolumn-siunitx}
+	\begin{tabular}{
+			l
+			*{4}{S[table-format=1.4]}
+		}
+		\toprule
+		Algorithm & \multicolumn{2}{c}{\acrshort{mae}} & \multicolumn{2}{c}{Second metric} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+		& {first test set} & {second test set} & {first test set} & {second test set} \\ \midrule
+		First & 0.0067 & 0.0113 & 0.0076 & 0.0199 \\
+		Second & 0.0041 & 0.0055 & 0.0048 & 0.0096 \\ \bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{Printing}
+
+The official cover pages can be included as pdf files using \texttt{pdfpages} package. To remove colored hyperlinks, and thus be able to print only pages with figures in color, use \verb|colorlinks = true| option for the \texttt{hyperref} package. Know the difference between hyphen, en dash and em dash.
+
+\subsection{References and citing}
+
+Use \verb|cref| command for referring to figures, tables, equation etc. Use \verb|autocite| for citations.
+
+\subsection{Lists}
+
+Try to avoid using \texttt{itemize} and \texttt{enumerate} environments. Nevertheless, use \texttt{singlespace*} environment to temporarily disable default spacing of one and half.
+
+\begin{singlespace*}
+	\begin{enumerate}
+		\item
+		This is the first item.
+		\item
+		This is the second item.
+	\end{enumerate}
+\end{singlespace*}
